@@ -60,7 +60,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let controller_subsystem = sdl_context.game_controller()?;
     let controller_mappings =
-        include_str!("../../../external/SDL_GameControllerDB/gamecontrollerdb.txt");
+        include_str!("../../../external/gamecontrollerdb.txt");
     controller_subsystem.load_mappings_from_read(&mut Cursor::new(controller_mappings))?;
 
     let available_controllers = (0..controller_subsystem.num_joysticks()?)
