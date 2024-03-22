@@ -1,4 +1,4 @@
-use std::{path::PathBuf};
+use std::path::PathBuf;
 
 use rustboyadvance_core::{
     cartridge::{BackupType, GamepakBuilder},

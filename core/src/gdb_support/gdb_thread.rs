@@ -2,10 +2,7 @@ use std::sync::{Arc, Condvar, Mutex};
 
 use arm7tdmi::{
     gdb::wait_for_connection,
-    gdbstub::{
-        conn::ConnectionExt,
-        stub::GdbStub,
-    },
+    gdbstub::{conn::ConnectionExt, stub::GdbStub},
 };
 
 use crate::{GBAError, GameBoyAdvance};

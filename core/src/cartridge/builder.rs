@@ -222,7 +222,9 @@ fn detect_backup_type(bytes: &[u8]) -> Option<BackupType> {
 
     for i in 0..5 {
         let search = TwoWaySearcher::new(ID_STRINGS[i].as_bytes());
-        if let Some(_) = search.search_in(bytes) { return Some(BackupType::from_u8(i as u8).unwrap()) }
+        if let Some(_) = search.search_in(bytes) {
+            return Some(BackupType::from_u8(i as u8).unwrap());
+        }
     }
     None
 }

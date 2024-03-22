@@ -103,7 +103,10 @@ use super::sysbus::consts::*;
 pub const EEPROM_BASE_ADDR: u32 = 0x0DFF_FF00;
 
 fn is_gpio_access(addr: u32) -> bool {
-    matches!(addr & 0x1ff_ffff, GPIO_PORT_DATA | GPIO_PORT_DIRECTION | GPIO_PORT_CONTROL)
+    matches!(
+        addr & 0x1ff_ffff,
+        GPIO_PORT_DATA | GPIO_PORT_DIRECTION | GPIO_PORT_CONTROL
+    )
 }
 
 impl BusIO for Cartridge {

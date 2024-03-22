@@ -1,10 +1,10 @@
 use std::fmt;
 
-use log::debug;
-use serde::{Deserialize, Serialize};
+use ansi_term::Style;
 use bit::BitIndex;
+use log::debug;
 use num::FromPrimitive;
-use ansi_term::{Style};
+use serde::{Deserialize, Serialize};
 
 use rustboyadvance_utils::{Shared, WeakPointer};
 
@@ -12,7 +12,6 @@ pub use super::exception::Exception;
 use super::reg_string;
 
 use super::{arm::ArmCond, psr::RegPSR, Addr, CpuMode, CpuState};
-
 
 use super::memory::{MemoryAccess, MemoryInterface};
 use MemoryAccess::*;
@@ -518,7 +517,7 @@ impl<I: MemoryInterface> fmt::Debug for Arm7tdmiCore<I> {
             let mut reg_name = reg_string(i).to_string();
             reg_name.make_ascii_uppercase();
             let entry = format!("\t{:-3} = 0x{:08x}", reg_name, gpr[i]);
-               write!(
+            write!(
                 f,
                 "{}{}",
                 reg_normal_style.paint(entry),
