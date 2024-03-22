@@ -42,7 +42,7 @@ fn thumb_decode(i: u16) -> (&'static str, String) {
     } else if i & 0xfc00 == 0x4000 {
         (
             "AluOps",
-            format!("exec_thumb_alu_ops::<{OP}>", OP = i.bit_range(6..10) as u16),
+            format!("exec_thumb_alu_ops::<{OP}>", OP = i.bit_range(6..10)),
         )
     } else if i & 0xfc00 == 0x4400 {
         (
@@ -424,11 +424,11 @@ fn main() {
     // TODO - don't do this in the build script and use `const fn` instead when it becomes stable
     let out_dir = env::var_os("OUT_DIR").unwrap();
     let thumb_lut_path = Path::new(&out_dir).join("thumb_lut.rs");
-    let mut thumb_lut_file = fs::File::create(&thumb_lut_path).expect("failed to create file");
+    let mut thumb_lut_file = fs::File::create(thumb_lut_path).expect("failed to create file");
     generate_thumb_lut(&mut thumb_lut_file).expect("failed to generate thumb table");
 
     let arm_lut_path = Path::new(&out_dir).join("arm_lut.rs");
-    let mut arm_lut_file = fs::File::create(&arm_lut_path).expect("failed to create file");
+    let mut arm_lut_file = fs::File::create(arm_lut_path).expect("failed to create file");
     generate_arm_lut(&mut arm_lut_file).expect("failed to generate arm table");
 
     println!("cargo:rerun-if-changed=build.rs");

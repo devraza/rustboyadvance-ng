@@ -8,7 +8,6 @@ use crate::{
 
 use MemoryAccess::*;
 
-use super::ArmDecodeHelper;
 use super::*;
 
 impl<I: MemoryInterface> Arm7tdmiCore<I> {
@@ -177,7 +176,7 @@ impl<I: MemoryInterface> Arm7tdmiCore<I> {
                 let rs = insn.bit_range(8..12) as usize;
                 ShiftRegisterBy::ByRegister(rs)
             } else {
-                let amount = insn.bit_range(7..12) as u32;
+                let amount = insn.bit_range(7..12);
                 ShiftRegisterBy::ByAmount(amount)
             };
 
@@ -240,7 +239,7 @@ impl<I: MemoryInterface> Arm7tdmiCore<I> {
 
         let mut result = CpuAction::AdvancePC(Seq);
         if let Some(alu_res) = alu_res {
-            self.set_reg(rd, alu_res as u32);
+            self.set_reg(rd, alu_res);
             if rd == REG_PC {
                 // T bit might have changed
                 match self.cpsr.state() {
@@ -290,7 +289,7 @@ impl<I: MemoryInterface> Arm7tdmiCore<I> {
                 self.register_shift_const::<BS_OP, SHIFT_BY_REG>(offset, rm as usize, &mut carry);
         }
         let offset = if ADD {
-            offset as u32
+            offset
         } else {
             (-(offset as i32)) as u32
         };
@@ -411,7 +410,7 @@ impl<I: MemoryInterface> Arm7tdmiCore<I> {
 
         if LOAD {
             let data = match transfer_type {
-                ArmHalfwordTransferType::SignedByte => self.load_8(addr, NonSeq) as u8 as i8 as u32,
+                ArmHalfwordTransferType::SignedByte => self.load_8(addr, NonSeq) as u32,
                 ArmHalfwordTransferType::SignedHalfwords => self.ldr_sign_half(addr, NonSeq),
                 ArmHalfwordTransferType::UnsignedHalfwords => self.ldr_half(addr, NonSeq),
             };
@@ -599,7 +598,7 @@ impl<I: MemoryInterface> Arm7tdmiCore<I> {
         }
 
         if writeback {
-            self.set_reg(base_reg, addr as u32);
+            self.set_reg(base_reg, addr);
         }
 
         result
@@ -705,7 +704,7 @@ impl<I: MemoryInterface> Arm7tdmiCore<I> {
         } else {
             let t = self.ldr_word(base_addr, NonSeq);
             self.store_aligned_32(base_addr, self.get_reg(insn.rm()), Seq);
-            self.set_reg(rd, t as u32);
+            self.set_reg(rd, t);
         }
         self.idle_cycle();
 

@@ -1,5 +1,4 @@
 use super::*;
-use regs::RegMosaic;
 
 impl RegMosaic {
     fn is_enabled_for_bg(&self) -> bool {

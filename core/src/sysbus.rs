@@ -8,7 +8,7 @@ use super::cartridge::Cartridge;
 use super::dma::DmaNotifer;
 use super::iodev::{IoDevices, WaitControl};
 use super::sched::*;
-use arm7tdmi::{self, Arm7tdmiCore};
+use arm7tdmi::{Arm7tdmiCore};
 use rustboyadvance_utils::{Shared, WeakPointer};
 
 pub mod consts {

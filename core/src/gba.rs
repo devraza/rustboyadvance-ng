@@ -2,7 +2,6 @@
 use std::cell::Cell;
 use std::rc::Rc;
 
-use bincode;
 use serde::{Deserialize, Serialize};
 
 use crate::gdb_support::{gdb_thread::start_gdb_server_thread, DebuggerRequestHandler};
@@ -19,7 +18,7 @@ use super::timer::Timers;
 
 use super::sound::interface::DynAudioInterface;
 
-use arm7tdmi::{self, Arm7tdmiCore};
+use arm7tdmi::{Arm7tdmiCore};
 use rustboyadvance_utils::Shared;
 
 pub struct GameBoyAdvance {

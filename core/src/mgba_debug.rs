@@ -16,6 +16,12 @@ pub struct DebugPort {
     debug_string: Box<[u8]>,
 }
 
+impl Default for DebugPort {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl DebugPort {
     pub fn new() -> DebugPort {
         DebugPort {

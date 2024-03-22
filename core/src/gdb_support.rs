@@ -111,7 +111,7 @@ impl DebuggerRequestHandler {
                     data.len(),
                     addr
                 );
-                gba.cpu.write_addrs(*addr, &data)?;
+                gba.cpu.write_addrs(*addr, data)?;
                 self.complete_request(None)
             }
             Interrupt => {

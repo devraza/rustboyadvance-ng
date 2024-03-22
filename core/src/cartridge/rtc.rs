@@ -223,10 +223,7 @@ impl Rtc {
 
     fn serial_transfer_in_progress(&self) -> bool {
         use RtcState::*;
-        match self.state {
-            Idle | WaitForChipSelectHigh => false,
-            _ => true,
-        }
+        !matches!(self.state, Idle | WaitForChipSelectHigh)
     }
 
     /// Loads a register contents into an internal buffer

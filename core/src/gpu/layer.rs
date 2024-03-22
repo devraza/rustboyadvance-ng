@@ -1,5 +1,3 @@
-use num::FromPrimitive;
-
 use super::*;
 
 #[derive(Primitive, Debug, Ord, Eq, PartialOrd, PartialEq, Clone, Copy)]

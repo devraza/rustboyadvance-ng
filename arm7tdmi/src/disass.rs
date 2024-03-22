@@ -42,7 +42,7 @@ where
         let mut line = String::new();
 
         let addr = self.base + self.pos as Addr;
-        let decoded: D = D::decode_from_bytes(&self.bytes[(self.pos as usize)..], addr);
+        let decoded: D = D::decode_from_bytes(&self.bytes[(self.pos)..], addr);
         let decoded_raw = decoded.get_raw();
         self.pos += self.word_size;
         write!(&mut line, "{addr:8x}:\t{decoded_raw:08x} \t{decoded}").unwrap();

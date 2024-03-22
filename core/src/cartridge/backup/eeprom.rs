@@ -1,6 +1,5 @@
 use super::{BackupFile, BackupMemoryInterface};
 
-use bytesize;
 use num::FromPrimitive;
 use serde::{Deserialize, Serialize};
 
@@ -64,12 +63,6 @@ enum SpiState {
     TxDummy,
     TxData,
     RxData,
-}
-
-impl Default for SpiState {
-    fn default() -> SpiState {
-        SpiState::RxInstruction
-    }
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
@@ -255,10 +248,7 @@ impl EepromChip {
 
     pub(crate) fn is_transmitting(&self) -> bool {
         use SpiState::*;
-        match self.state {
-            TxData | TxDummy => true,
-            _ => false,
-        }
+        matches!(self.state, TxData | TxDummy)
     }
 
     pub(crate) fn reset(&mut self) {
@@ -288,7 +278,7 @@ impl EepromController {
         let mut detect = true;
         let mut eeprom_type = EepromType::Eeprom512;
         if let Some(path) = &path {
-            if let Ok(metadata) = fs::metadata(&path) {
+            if let Ok(metadata) = fs::metadata(path) {
                 let human_size = bytesize::ByteSize::b(metadata.len());
                 let assumed_type = match metadata.len() {
                     512 => EepromType::Eeprom512,

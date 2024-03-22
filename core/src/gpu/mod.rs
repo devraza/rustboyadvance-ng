@@ -367,8 +367,8 @@ impl Gpu {
             self.render_scanline();
             // update BG2/3 reference points on the end of a scanline
             for i in 0..2 {
-                self.bg_aff[i].internal_x += self.bg_aff[i].pb as i16 as i32;
-                self.bg_aff[i].internal_y += self.bg_aff[i].pd as i16 as i32;
+                self.bg_aff[i].internal_x += self.bg_aff[i].pb as i32;
+                self.bg_aff[i].internal_y += self.bg_aff[i].pd as i32;
             }
 
             (GpuEvent::HDraw, CYCLES_HDRAW)

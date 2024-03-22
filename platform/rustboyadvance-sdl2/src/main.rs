@@ -1,7 +1,6 @@
 use sdl2::controller::Button;
 use sdl2::event::Event;
 use sdl2::keyboard::Scancode;
-use sdl2::{self};
 
 use structopt::StructOpt;
 

@@ -34,6 +34,12 @@ pub struct GamepakBuilder {
     create_backup_file: bool,
 }
 
+impl Default for GamepakBuilder {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl GamepakBuilder {
     pub fn new() -> GamepakBuilder {
         GamepakBuilder {
@@ -199,11 +205,7 @@ impl GamepakBuilder {
 
 const BACKUP_FILE_EXT: &str = "sav";
 fn create_backup(backup_type: BackupType, rom_path: Option<PathBuf>) -> BackupMedia {
-    let backup_path = if let Some(rom_path) = rom_path {
-        Some(rom_path.with_extension(BACKUP_FILE_EXT))
-    } else {
-        None
-    };
+    let backup_path = rom_path.map(|rom_path| rom_path.with_extension(BACKUP_FILE_EXT));
     match backup_type {
         BackupType::Flash | BackupType::Flash512 => {
             BackupMedia::Flash(Flash::new(backup_path, FlashSize::Flash64k))
@@ -220,10 +222,7 @@ fn detect_backup_type(bytes: &[u8]) -> Option<BackupType> {
 
     for i in 0..5 {
         let search = TwoWaySearcher::new(ID_STRINGS[i].as_bytes());
-        match search.search_in(bytes) {
-            Some(_) => return Some(BackupType::from_u8(i as u8).unwrap()),
-            _ => {}
-        }
+        if let Some(_) = search.search_in(bytes) { return Some(BackupType::from_u8(i as u8).unwrap()) }
     }
     None
 }

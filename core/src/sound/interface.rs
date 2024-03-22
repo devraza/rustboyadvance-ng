@@ -58,6 +58,6 @@ impl AudioInterface for NullAudio {}
 
 impl NullAudio {
     pub fn new() -> Box<NullAudio> {
-        Box::new(NullAudio::default())
+        Box::<NullAudio>::default()
     }
 }

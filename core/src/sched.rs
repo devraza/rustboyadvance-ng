@@ -67,7 +67,7 @@ impl Ord for Event {
 impl PartialOrd for Event {
     #[inline]
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        other.time.partial_cmp(&self.time)
+        Some(self.cmp(other))
     }
 
     #[inline]
@@ -107,6 +107,12 @@ pub struct Scheduler {
 }
 
 pub type SharedScheduler = Shared<Scheduler>;
+
+impl Default for Scheduler {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
 impl Scheduler {
     pub fn new() -> Scheduler {

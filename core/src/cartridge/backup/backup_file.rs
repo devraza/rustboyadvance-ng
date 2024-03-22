@@ -81,7 +81,7 @@ impl BackupFile {
             let mut _file = OpenOptions::new()
                 .read(true)
                 .write(true)
-                .open(&path)
+                .open(path)
                 .unwrap();
 
             let mut buffer = Vec::new();
