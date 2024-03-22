@@ -25,6 +25,7 @@
           overlays = [fenix.overlays.default];
         };
         toolchain = pkgs.fenix.complete;
+        dependencies = with pkgs; [ SDL2 SDL2_image ];
       in rec
       {
         # Executed by `nix build`
@@ -36,12 +37,14 @@
             pname = "rustboyadvance-ng";
             name = "rustboyadvance-ng";
             src = ./.;
+            meta.mainProgram = "rustboyadvance-sdl2";
             cargoLock = {
               lockFile = ./Cargo.lock;
               outputHashes = {
                 "libretro-backend-0.2.1" = "sha256-qsJo7wP01zhRNv4XrZJbIvOQrSJfUaqve0fNOaR6aWs=";
               };
             };
+            buildInputs = dependencies;
           };
 
         # Executed by `nix run`
@@ -53,9 +56,7 @@
             (with toolchain; [
               cargo rustc rust-src clippy rustfmt # rust components
             ])
-            SDL2 SDL2_image
-            mold clang
-          ];
+          ] ++ dependencies;
           RUST_SRC_PATH = "${toolchain.rust-src}/lib/rustlib/src/rust/library";
         };
       }
