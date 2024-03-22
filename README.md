@@ -4,7 +4,7 @@ Nintendo GameBoy Advance™ emulator and debugger, written in Rust.
 
 > This repository is a fork of [rustboyadvance-ng](https://github.com/michelhe/rustboyadvance-ng), with minimal non-feature changes.
 
-# Project Structure
+# Project structure
 * `core/` - Main emulator crate that ties everything together 
 * `arm7tdmi/` - Emulation of the Arm7tdmi processor
 * `platform/` - Constains executables & application built with `rustboyadvance-core`
@@ -13,6 +13,9 @@ Nintendo GameBoy Advance™ emulator and debugger, written in Rust.
     * `platform/rustbodyadvance-minifb` - Desktop application built with minifb, *not maintained*.
     * `platform/rustbodyadvance-jni` - Java JNI binidngs for the emulator.
     * `platform/android` - A PoC Android application.
+
+## External content
+The file at [`external/gamecontrollerdb.txt`](./external/gameoncontrollerdb.txt) is not my work - it is sourced from [this GitHub repository](https://github.com/mdqinc/SDL_GameControllerDB) and covered by the appropriate license present in said repository.
 
 ## Key bindings
 GBA key bindings:
