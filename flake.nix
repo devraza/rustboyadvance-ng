@@ -33,10 +33,15 @@
             inherit (toolchain) cargo rustc;
           })
           .buildRustPackage {
-            pname = "oxitoko";
-            version = "1.0.0";
+            pname = "rustboyadvance-ng";
+            name = "rustboyadvance-ng";
             src = ./.;
-            cargoLock.lockFile = ./Cargo.lock;
+            cargoLock = {
+              lockFile = ./Cargo.lock;
+              outputHashes = {
+                "libretro-backend-0.2.1" = "sha256-qsJo7wP01zhRNv4XrZJbIvOQrSJfUaqve0fNOaR6aWs=";
+              };
+            };
           };
 
         # Executed by `nix run`
