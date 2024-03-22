@@ -15,7 +15,7 @@ Nintendo GameBoy Advance™ emulator and debugger, written in Rust.
     * `platform/android` - A PoC Android application.
 
 ## External content
-The file at [`external/gamecontrollerdb.txt`](./external/gameoncontrollerdb.txt) is not my work - it is sourced from [this GitHub repository](https://github.com/mdqinc/SDL_GameControllerDB) and covered by the appropriate license present in said repository.
+The file at [`external/gamecontrollerdb.txt`](./external/gamecontrollerdb.txt) is not my work - it is sourced from [this GitHub repository](https://github.com/mdqinc/SDL_GameControllerDB) and covered by the appropriate license present in said repository.
 
 ## Key bindings
 GBA key bindings:
