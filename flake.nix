@@ -15,7 +15,6 @@
     nixpkgs-unstable,
     utils,
     fenix,
-    nixgl,
     ...
   }:
     utils.lib.eachDefaultSystem
@@ -23,7 +22,7 @@
       system: let
         pkgs = import nixpkgs-unstable {
           inherit system;
-          overlays = [fenix.overlays.default nixgl.overlay];
+          overlays = [fenix.overlays.default];
         };
         toolchain = pkgs.fenix.complete;
       in rec

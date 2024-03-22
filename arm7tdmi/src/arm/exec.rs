@@ -1,5 +1,3 @@
-use bit::BitIndex;
-
 use crate::{
     alu::*,
     memory::{MemoryAccess, MemoryInterface},
