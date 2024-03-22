@@ -5,7 +5,6 @@ members = [
     "utils",
     "platform/rustboyadvance-sdl2",
     "platform/rustboyadvance-libretro",
-    # "platform/rustboyadvance-minifb", - DEPRECATED
     "platform/rustboyadvance-wasm",
     "platform/rustboyadvance-jni",
     "fps_bench"
@@ -13,13 +12,12 @@ members = [
 
 default-members = ["platform/rustboyadvance-sdl2"]
 
-
 [profile.dev]
 opt-level = 2
 debug = true
 
 [profile.release]
-debug = false
+strip = true
 
 [profile.release-dev]
 inherits = "release"
