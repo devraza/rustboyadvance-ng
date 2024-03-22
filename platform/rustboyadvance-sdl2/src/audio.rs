@@ -1,4 +1,3 @@
-use sdl2;
 use sdl2::audio::{AudioCallback, AudioDevice, AudioFormat, AudioSpec, AudioSpecDesired};
 
 use rustboyadvance_core::prelude::SimpleAudioInterface;

@@ -3,8 +3,6 @@ use sdl2::event::Event;
 use sdl2::keyboard::Scancode;
 use sdl2::{self};
 
-use bytesize;
-use spin_sleep;
 use structopt::StructOpt;
 
 use std::fs;
@@ -14,7 +12,6 @@ use std::time;
 
 #[macro_use]
 extern crate log;
-use flexi_logger;
 use flexi_logger::*;
 
 mod audio;
@@ -29,7 +26,7 @@ use rustboyadvance_utils::FpsCounter;
 const LOG_DIR: &str = ".logs";
 
 fn ask_download_bios() {
-    const OPEN_SOURCE_BIOS_URL: &'static str =
+    const OPEN_SOURCE_BIOS_URL: &str =
         "https://github.com/Nebuleon/ReGBA/raw/master/bios/gba_bios.bin";
     println!("Missing BIOS file. If you don't have the original GBA BIOS, you can download an open-source bios from {}", OPEN_SOURCE_BIOS_URL);
     std::process::exit(0);
@@ -46,7 +43,7 @@ fn load_bios(bios_path: &Path) -> Box<[u8]> {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    fs::create_dir_all(LOG_DIR).expect(&format!("could not create log directory ({})", LOG_DIR));
+    fs::create_dir_all(LOG_DIR).unwrap_or_else(|_| panic!("could not create log directory ({})", LOG_DIR));
     flexi_logger::Logger::with_env_or_str("info")
         .log_to_file()
         .directory(LOG_DIR)
@@ -84,7 +81,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut renderer = video::init(&sdl_context)?;
     let (audio_interface, mut _sdl_audio_device) = audio::create_audio_player(&sdl_context)?;
-    let mut rom_name = opts.rom_name();
+    let rom_name = opts.rom_name();
 
     let bios_bin = load_bios(&opts.bios);
 
@@ -194,9 +191,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     };
                     if removed {
                         let name = active_controller
-                            .and_then(|controller| Some(controller.name()))
+                            .map(|controller| Some(controller.name()))
                             .unwrap();
-                        info!("Removing game controller: {}", name);
+                        info!("Removing game controller: {:?}", name);
                         active_controller = None;
                     }
                 }
@@ -208,7 +205,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     }
                 }
                 Event::Quit { .. } => break 'running,
-                Event::DropFile { filename, .. } => {
+                Event::DropFile {  .. } => {
                     todo!("impl DropFile again")
                 }
                 _ => {}
