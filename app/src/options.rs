@@ -18,7 +18,7 @@ pub struct Options {
     pub rom: PathBuf,
 
     /// Bios file to use
-    #[structopt(long, parse(from_os_str), default_value = "gba_bios.bin")]
+    #[structopt(long, parse(from_os_str))]
     pub bios: PathBuf,
 
     /// Do not output sound
