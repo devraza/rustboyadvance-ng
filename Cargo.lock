@@ -590,14 +590,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "fps_bench"
-version = "0.1.0"
-dependencies = [
- "rustboyadvance-core",
- "rustboyadvance-utils",
-]
-
-[[package]]
 name = "fuzzy-matcher"
 version = "0.3.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
