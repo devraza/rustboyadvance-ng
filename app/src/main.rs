@@ -102,10 +102,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     //     normal_panic(panic_info);
     // }));
 
-    if opts.skip_bios {
-        println!("Skipping bios animation..");
-        gba.skip_bios();
-    }
+    // Skip the BIOS animation
+    gba.skip_bios();
 
     if opts.gdbserver {
         gba.start_gdbserver(opts.gdbserver_port);

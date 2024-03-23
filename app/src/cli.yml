@@ -28,9 +28,6 @@ args:
         long: rtc
         help: Force cartridge to have RTC
         required: false
-    - skip_bios:
-        long: skip-bios
-        help: Skip running bios and start from the ROM instead
     - debug:
         long: debug
         help: Use the custom debugger
