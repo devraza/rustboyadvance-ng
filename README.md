@@ -13,7 +13,7 @@ Nintendo GameBoy Advance™ emulator and debugger, written in Rust.
 The file at [`external/gamecontrollerdb.txt`](./external/gamecontrollerdb.txt) is not my work - it is sourced from [this GitHub repository](https://github.com/mdqinc/SDL_GameControllerDB) and covered by the appropriate license present in said repository.
 
 ## Usage
-You will need to specify the BIOS file to run with, using the `--bios` command-line argument. Note that there is such a BIOS ROM present in this directory at [`./external/gba_bios.bin`](./external/gba_bios.bin)
+You will need to specify the BIOS file to run with, using the `--bios` command-line argument. Note that there is such a BIOS ROM present in this directory at [`./external/gba_bios.bin`](./external/gba_bios.bin).
 
 ## Key bindings
 GBA key bindings:
