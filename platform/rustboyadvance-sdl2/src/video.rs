@@ -1,8 +1,7 @@
-use sdl2::image::{InitFlag, LoadSurface, Sdl2ImageContext};
+use sdl2::image::{InitFlag, Sdl2ImageContext};
 use sdl2::pixels::{Color, PixelFormatEnum};
 use sdl2::rect::Rect;
 use sdl2::render::{Texture, TextureCreator, WindowCanvas};
-use sdl2::surface::Surface;
 use sdl2::video::WindowContext;
 use sdl2::{Sdl, VideoSubsystem};
 
@@ -25,15 +24,12 @@ pub struct Renderer<'a> {
 pub fn init(sdl_context: &Sdl) -> Result<Renderer<'_>, Box<dyn std::error::Error>> {
     let video_subsystem = sdl_context.video()?;
     let image_context = sdl2::image::init(InitFlag::PNG | InitFlag::JPG)?;
-    let mut window = video_subsystem
-        .window("RustBoyAdvance", SCREEN_WIDTH * 3, SCREEN_HEIGHT * 3)
+    let window = video_subsystem
+        .window("rustboyadvance", SCREEN_WIDTH * 3, SCREEN_HEIGHT * 3)
         .opengl()
         .position_centered()
         .resizable()
         .build()?;
-
-    let window_icon = Surface::from_file("assets/icon.png")?;
-    window.set_icon(window_icon);
 
     let mut canvas = window.into_canvas().accelerated().build()?;
     canvas.set_logical_size(SCREEN_WIDTH, SCREEN_HEIGHT)?;
