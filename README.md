@@ -7,12 +7,7 @@ Nintendo GameBoy Advance™ emulator and debugger, written in Rust.
 # Project structure
 * `core/` - Main emulator crate that ties everything together 
 * `arm7tdmi/` - Emulation of the Arm7tdmi processor
-* `platform/` - Constains executables & application built with `rustboyadvance-core`
-    * `platform/rustbodyadvance-wasm` - Web emulator powered by WebAssembly
-    * `platform/rustbodyadvance-sdl2` - Desktop application built with sdl2
-    * `platform/rustbodyadvance-minifb` - Desktop application built with minifb, *not maintained*.
-    * `platform/rustbodyadvance-jni` - Java JNI binidngs for the emulator.
-    * `platform/android` - A PoC Android application.
+* `app/` -  Contains the desktop application built with `sdl2`
 
 ## External content
 The file at [`external/gamecontrollerdb.txt`](./external/gamecontrollerdb.txt) is not my work - it is sourced from [this GitHub repository](https://github.com/mdqinc/SDL_GameControllerDB) and covered by the appropriate license present in said repository.
