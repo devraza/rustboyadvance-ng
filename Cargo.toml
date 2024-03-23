@@ -4,7 +4,6 @@ members = [
     "arm7tdmi",
     "utils",
     "app",
-    "fps_bench"
 ]
 resolver = "1"
 default-members = ["platform/rustboyadvance-sdl2"]
