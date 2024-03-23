@@ -6,7 +6,7 @@ members = [
     "app",
 ]
 resolver = "1"
-default-members = ["platform/rustboyadvance-sdl2"]
+default-members = ["app"]
 
 [profile.dev]
 opt-level = 2
