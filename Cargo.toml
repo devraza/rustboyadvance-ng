@@ -20,7 +20,6 @@ debug = true
 opt-level = 3
 strip = true
 codegen-units = 1
-lto = "fat"
 
 [profile.release-dev]
 inherits = "release"
