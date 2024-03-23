@@ -15,15 +15,6 @@ fn now() -> Instant {
     time::Instant::now()
 }
 
-#[cfg(target_arch = "wasm32")]
-use instant;
-#[cfg(target_arch = "wasm32")]
-type Instant = instant::Instant;
-#[cfg(target_arch = "wasm32")]
-fn now() -> Instant {
-    instant::Instant::now()
-}
-
 pub fn read_bin_file(filename: &Path) -> io::Result<Vec<u8>> {
     let mut buf = Vec::new();
     let mut file = File::open(filename)?;

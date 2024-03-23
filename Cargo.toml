@@ -4,9 +4,6 @@ members = [
     "arm7tdmi",
     "utils",
     "platform/rustboyadvance-sdl2",
-    "platform/rustboyadvance-libretro",
-    "platform/rustboyadvance-wasm",
-    "platform/rustboyadvance-jni",
     "fps_bench"
 ]
 resolver = "1"
